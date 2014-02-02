@@ -11,7 +11,7 @@ public class EXT extends EXTRAS {
     private static Model m_model = ModelFactory.createDefaultModel();
 
     /** <p>The namespace of the vocabulary as a string</p> */
-    public static final String NS = "http://www.devexe.co.uk/vocabularies/ext#";
+    public static final String NS = "http://devexe.co.uk/vocabularies/ext#";
     
     /** <p>The namespace of the vocabulary as a string</p>
      *  @see #NS */
