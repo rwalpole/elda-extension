@@ -30,18 +30,15 @@ import com.hp.hpl.jena.rdf.model.Statement;
 
 public class TestConstruct {
 
-    @Ignore
     @Test public void testDefaultTemplateInSpec() {
-		testConstruct(
-				"",
-				"",
-				"; ext:construct '" +
-						"CONSTRUCT{?parent dri:childCount ?childCount}"+
-						"WHERE{SELECT ?parent (COUNT(?child) AS ?childCount)"+
-						"WHERE {?parent dri:catalogUUID ?uuid ."+
-						"?child dri:catalogParentUUID ?parent."+
-						"}GROUP BY ?parent}'"
-		);
+        StringBuilder builder = new StringBuilder();
+        builder.append("; ext:construct '");
+        builder.append("CONSTRUCT{ ?parent dri:childCount ?childCount . }");
+        builder.append("WHERE{ SELECT ?parent (COUNT(?child) AS ?childCount)");
+        builder.append("WHERE { ?parent dri:catalogUUID ?uuid .");
+        builder.append("?child dri:catalogParentUUID ?parent .");
+        builder.append("} GROUP BY ?parent }'");
+        testConstruct("","",builder.toString());
 	}
 	
 	/**
@@ -55,7 +52,7 @@ public class TestConstruct {
 	*/
 	public void testConstruct( String params, String inSpec, String inEndpoint ) {
 		
-		String prefixes = "@prefix : <eh:/> . @prefix dri: <http://wwww.devexe.co.uk/vocabularies/dri#> .";
+		String prefixes = "@prefix : <eh:/> . @prefix dri: <http://devexe.co.uk/vocabularies/dri#> .";
 
         StringBuilder builder = new StringBuilder(prefixes);
         builder.append("@prefix api:     <http://purl.org/linked-data/api/vocab#> .");
@@ -68,22 +65,21 @@ public class TestConstruct {
         builder.append("@prefix foaf:    <http://xmlns.com/foaf/0.1/> .");
         builder.append("@prefix school:  <http://education.data.gov.uk/def/school/> .");
         builder.append("@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .");
-        builder.append("@prefix ext:     <http://wwww.devexe.co.uk/vocabularies/ext#> .");
-        builder.append("@prefix dri:     <http://wwww.devexe.co.uk/vocabularies/dri#> .");
+        builder.append("@prefix ext:     <http://devexe.co.uk/vocabularies/ext#> .");
+        builder.append("@prefix dri:     <http://devexe.co.uk/vocabularies/dri#> .");
         builder.append(":root a api:API");
-        builder.append("; api:sparqlEndpoint <here:dataPart>");
+        builder.append(" ; api:sparqlEndpoint <here:dataPart>");
         builder.append(inSpec);
-        builder.append("; api:endpoint :ep");
-        builder.append(".");
+        builder.append(" ; api:endpoint :ep .");
         builder.append(":ep a api:ItemEndpoint");
-        builder.append("; api:variable [api:name \"uuid\"; api:type xsd:string]");
-        builder.append("; api:uriTemplate '/child-count/{uuid}'");
+        builder.append(" ; api:variable [api:name \"uuid\"; api:type xsd:string]");
+        builder.append(" ; api:uriTemplate '/child-count/{uuid}'");
         builder.append(inEndpoint);
-        builder.append(".");
+        builder.append(" .");
         builder.append("<here:dataPart> :elements <http://localhost:2020/dri/catalog/45b57b49-9abf-4fe0-b82d-87c984564a6c>,");
         builder.append("<http://localhost:2020/dri/catalog/e2ddcb69-55b0-4816-9792-d0abab5dc6f9>,");
         builder.append("<http://localhost:2020/dri/catalog/6a1eb17a-7c08-4927-a71a-0cd6c29c252a>");
-        builder.append(".");
+        builder.append(" .");
         builder.append("<http://localhost:2020/dri/catalog/45b57b49-9abf-4fe0-b82d-87c984564a6c> a dri:catalog ;");
         builder.append("dri:catalogBatchUUID <http://localhost:2020/dri/batch/08dacdd9-9f81-4411-a87b-0b68185ecfa7> ;");
         builder.append("dri:catalogCollectionUUID <http://localhost:2020/dri/collection/e9f3c8e9-e883-4fcf-a9a3-5caf0c808c5d> ;");
@@ -130,7 +126,7 @@ public class TestConstruct {
 		Model wanted = modelFrom( lines );
 		for (Statement s: wanted.listStatements().toList())
 			if (!obtained.contains( s ))
-				fail("missing required statement: " + s );
+				fail("missing required statement: " + s);
 	}
 	
 	private Bindings bindTemplate( Bindings epBindings, String template, String path, MultiMap<String, String> qp ) {
