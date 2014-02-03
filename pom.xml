@@ -13,6 +13,12 @@
         <jena.version>2.10.1</jena.version>
         <elda.version>1.2.29-SNAPSHOT</elda.version>
     </properties>
+
+    <!--<parent>-->
+        <!--<groupId>com.epimorphics.lda</groupId>-->
+        <!--<artifactId>elda</artifactId>-->
+        <!--<version>${elda.version}</version>-->
+    <!--</parent>-->
     
     <build>
         <plugins>
