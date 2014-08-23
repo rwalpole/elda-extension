@@ -1,32 +1,30 @@
 package com.epimorphics.lda.tests;
 
-import static org.junit.Assert.fail;
-
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.Ignore;
-import org.junit.Test;
-
 import com.epimorphics.jsonrdf.utils.ModelIOUtils;
 import com.epimorphics.lda.apispec.tests.SpecUtil;
 import com.epimorphics.lda.bindings.Bindings;
 import com.epimorphics.lda.core.APIEndpoint;
 import com.epimorphics.lda.core.APIEndpointImpl;
-import com.epimorphics.lda.core.APIResultSet;
+import com.epimorphics.lda.core.ResponseResult;
 import com.epimorphics.lda.routing.MatchSearcher;
 import com.epimorphics.lda.specs.APISpec;
 import com.epimorphics.lda.support.Controls;
 import com.epimorphics.lda.support.MultiMap;
+import com.epimorphics.lda.support.NoteBoard;
 import com.epimorphics.lda.support.Times;
 import com.epimorphics.lda.tests_support.MakeData;
-import com.epimorphics.util.Triad;
 import com.epimorphics.util.URIUtils;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
+import org.junit.Test;
+
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.Assert.fail;
 
 public class TestConstruct {
 
@@ -113,8 +111,9 @@ public class TestConstruct {
 		URI ru = URIUtils.newURI( "/this" );
 		Bindings cc = Bindings.createContext( bindTemplate( epBindings, "/this", "/path", map ), map );
         APIEndpoint.Request request = new APIEndpoint.Request(controls, ru, cc);
-		Triad<APIResultSet, Map<String, String>, Bindings> resultsAndFormat = ep.call( request );
-		Model rsm = resultsAndFormat.a.getMergedModel();
+		//Triad<APIResultSet, Map<String, String>, Bindings> resultsAndFormat = ep.call( request, new NoteBoard());
+        ResponseResult resultsAndFormat = ep.call( request, new NoteBoard());
+		Model rsm = resultsAndFormat.resultSet.getMergedModel();
 		
 		Model obtained = ModelFactory.createDefaultModel();
 		obtained.add( rsm );

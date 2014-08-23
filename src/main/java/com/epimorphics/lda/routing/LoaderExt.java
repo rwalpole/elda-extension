@@ -33,15 +33,15 @@ public class LoaderExt extends Loader {
         modelLoader = new APIModelLoader( baseFilePath );
         EldaFileManager.get().addLocatorFile( baseFilePath );
         //
-        AuthMap am = AuthMap.loadAuthMap( EldaFileManager.get(), wrapParameters() );
+        //AuthMap am = AuthMap.loadAuthMap( EldaFileManager.get(), wrapParameters() );
         //
         SpecManagerFactory.set(new SpecManagerExtImpl(RouterFactory.getDefaultRouter(), modelLoader));
         //
         String contextName = RouterRestletSupport.flatContextPath(sc.getContextPath());
 
         for (String specTemplate : ServletUtils.getSpecNamesFromContext(adaptConfig(fig))) {
-            String spec = specTemplate.replaceAll( "\\{APP\\}", contextName );
-            ServletUtils.loadSpecsFromFiles( am, modelLoader, baseFilePath, prefixPath, spec );
+            String specPath = specTemplate.replaceAll( "\\{APP\\}", contextName );
+            ServletUtils.loadSpecsFromFiles( "", modelLoader, baseFilePath, prefixPath, specPath );
         }
     }
 
