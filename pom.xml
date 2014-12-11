@@ -16,6 +16,7 @@
         <!-- FIXME - would be nice if the following were in the parent pom -->
         <ver.jena-arq>2.10.1</ver.jena-arq>
         <ver.jena-core>2.11.2</ver.jena-core>
+        <jena.version>2.12.0</jena.version>
     </properties>
 
     <groupId>elda-extension</groupId>
@@ -88,6 +89,11 @@
             <version>${elda.version}</version>
             <type>war</type>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-core</artifactId>
+            <version>1.18.1</version>
         </dependency>
 
         <!-- test dependencies -->

@@ -42,6 +42,10 @@ public class RouterRestletSupportExt extends RouterRestletSupport {
         //
         Router router = new DefaultRouter();
         String baseFilePath = ServletUtils.withTrailingSlash(con.getRealPath("/"));
+<<<<<<< HEAD
+=======
+        //AuthMap am = AuthMap.loadAuthMap( EldaFileManager.get(), noNamesAndValues );
+>>>>>>> 2d9ca82cee965f0f07c1d970a53c3b0ea4627520
         ModelLoader modelLoader = new APIModelLoader( baseFilePath );
         addBaseFilepath( baseFilePath );
         //
@@ -49,7 +53,11 @@ public class RouterRestletSupportExt extends RouterRestletSupport {
         SpecManagerFactory.set(sm);
         //
         for (PrefixAndFilename pf: pfs) {
+<<<<<<< HEAD
             RouterRestletSupportExt.loadOneConfigFile( router, "", modelLoader, pf.prefixPath, pf.fileName );
+=======
+            loadOneConfigFile( router, "", modelLoader, pf.prefixPath, pf.fileName );
+>>>>>>> 2d9ca82cee965f0f07c1d970a53c3b0ea4627520
         }
         int count = router.countTemplates();
         return count == 0  ? RouterFactory.getDefaultRouter() : router;
