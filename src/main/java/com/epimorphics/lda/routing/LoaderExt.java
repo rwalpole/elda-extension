@@ -2,16 +2,12 @@ package com.epimorphics.lda.routing;
 
 import com.epimorphics.lda.Version;
 import com.epimorphics.lda.restlets.RouterRestletSupport;
-import com.epimorphics.lda.sources.AuthMap;
 import com.epimorphics.lda.specmanager.SpecManagerExtImpl;
 import com.epimorphics.lda.specmanager.SpecManagerFactory;
 import com.epimorphics.lda.support.EldaFileManager;
 import com.epimorphics.lda.vocabularies.ELDA;
 import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.xml.DOMConfigurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
