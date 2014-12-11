@@ -4,17 +4,13 @@ import com.epimorphics.lda.Version;
 import com.epimorphics.lda.cache.Cache;
 import com.epimorphics.lda.routing.Router;
 import com.epimorphics.lda.routing.ServletUtils;
-import com.epimorphics.lda.support.EldaFileManager;
 import com.epimorphics.util.DOMUtils;
-import com.hp.hpl.jena.shared.WrappedException;
 import org.apache.log4j.PropertyConfigurator;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.ws.rs.core.Context;
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by rob on 11/02/2014.
