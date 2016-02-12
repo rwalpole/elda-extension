@@ -49,14 +49,15 @@ public class APIQueryExt extends APIQuery {
             long afterSelect = System.currentTimeMillis();
             //
             t.setSelectionDuration(afterSelect - origin);
-            String outerSelect = queryAndResults.a;
+            //String outerSelect = queryAndResults.a;
             List<Resource> results = queryAndResults.b;
             //
-            rs = fetchDescriptionOfAllResources(c, outerSelect, spec, graphName, view, results);
+            rs = fetchDescriptionOfAllResources(c, spec, graphName, view, results);
+            //fetchDescriptionOfAllResources(Controls c, APISpec spec, String graphName, View view, List<Resource> results)
             //
             long afterView = System.currentTimeMillis();
             t.setViewDuration(afterView - afterSelect);
-            rs.setSelectQuery(outerSelect);
+            //rs.setSelectQuery(outerSelect);
 		}
 		else {
 			Model resultModel = runConstructQuery( c, spec, call, source );
